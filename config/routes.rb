@@ -1,14 +1,15 @@
 Rails.application.routes.draw do
+  root to: 'admin/top#top'
   namespace :admin do
-    get 'genres/index'
-    get 'genres/create'
-    get 'genres/edit'
-    get 'genres/update'
+    resources :genres
+
+    
+    resources :items
   end
-  resources :items
-  resources :genres
+  
+  
   devise_for :sessions
-  get 'top' => 'top#top'
-  root to: 'top#top'
+  
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

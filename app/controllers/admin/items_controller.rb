@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
   def create
     item = Item.new
     item.save
-    redirect_to item_path
+    redirect_to admin_item_path(item.id)
   end
 
   def show
@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
   def update
     item = Item.find(params[:id])
     item.update(item_params)
-    redirect_to item_path(item.id)
+    redirect_to admin_item_path(item.id)
   end
   
   private
