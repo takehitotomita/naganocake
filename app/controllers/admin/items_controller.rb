@@ -1,5 +1,5 @@
-class ItemsController < ApplicationController
-  before_action :authenticate_session!
+class Admin::ItemsController < ApplicationController
+  
   def index
     @items = Item.all
   end
@@ -9,13 +9,17 @@ class ItemsController < ApplicationController
   end
 
   def create
-    item = Item.new
-    item.save
-    redirect_to admin_item_path(item.id)
+    item = Item.new(item_params)
+    item.save!
+    redirect_to admin_items_path
+    #is_active,true = "販売中"
+    #is_active,false = "販売停止中"
   end
 
   def show
     @item = Item.find(params[:id])
+    #is_active,true = "販売中"
+    #is_active,false = "販売停止中"
   end
 
   def edit
@@ -30,6 +34,6 @@ class ItemsController < ApplicationController
   
   private
   def item_params
-    params.require(:item).permit(:name, :introduction, :price)
+    params.require(:item).permit(:name, :introduction, :price, :genre_id, :price)
   end
 end

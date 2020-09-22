@@ -1,0 +1,6 @@
+<h3>ジャンル検索</h3>
+<div>
+	<% genres.each do |genre| %>
+  		<%= link_to genre.name, public_items_path(genre_id: genre.id) %>
+	<% end %>
+</div>

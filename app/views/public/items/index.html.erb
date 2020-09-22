@@ -1,0 +1,22 @@
+<%= render 'public/items/list', genres: @genres %>
+
+　
+<% if params[:genre_id].present? %>
+    <h1><%= @genre.name %>一覧</h1>
+<% else %>
+	<h1>商品一覧</h1>
+<% end %>
+<table>
+	    <% @items.each do |item| %>
+		    <tr>
+				<th></th>
+				<td></td>
+				<td>
+					<%= link_to item.name, public_item_path(item.id) %>
+					<%= item.price %>
+				</td>
+			</tr>
+		<% end %>
+</table>
+
+<%#= link_to "もっと見る>", user_path(current_user.id), {class: "glyphicon glyphicon-home home"} %>

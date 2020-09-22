@@ -1,0 +1,11 @@
+<h1>配送先編集</h1>
+<%= form_with model: @address, url: public_address_path, method: :patch,local: true do |f| %>
+	<p>郵便番号（ハイフン無し)</p>
+	<%= f.text_field :postal_code %>
+　　　<p>住所</p>
+	<%= f.text_field :address %>
+	<p>宛名</p>
+	<%= f.text_field :name %>
+
+	<%= f.submit '編集する', class: "btn btn-primary col-xs-12" %>
+ <% end %>

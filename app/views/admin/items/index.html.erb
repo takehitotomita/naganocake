@@ -12,14 +12,10 @@
     <tbody>
        <% @items.each do |item| %>
 		 	<tr>
-		 		<td>
-		 			<%#= link_to user_path(book.user) do %>
-		 		</td>
-		 		<td><%#= book.title %>
-		 			<%= item.item_id %>
+		 		<td><
+		 			<%= item.id %>
 		 		</td>
 		 	    <td>
-		 	    	<%= item.name %>
 		 	    	<%= link_to item.name, admin_item_path(item.id) %>
 		 	    </td>
 		 	    <td>
@@ -29,9 +25,15 @@
 		 	    	<%= item.genre.name %>
 		 	    </td>
 		 	    <td>
-		 	    	<%= item.is_active %>
+		 	    	<% if item.is_active == true %>
+		 	    	販売中
+                    <% else %>
+                    販売停止中
+		 	    	<% end %>
+                   
+		 	    	
 		 	    </td>
 		 	</tr>
 	  <% end %>
-    </tbody>
+    </tbody> 
 </table>

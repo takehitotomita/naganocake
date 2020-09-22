@@ -1,0 +1,43 @@
+<h1>ショッピングカート</h1>
+<%= button_to 'カートを空にする',public_cart_items_destroy_path, method: :delete, class: 'fbtn' %>
+<table>
+	<thead>
+		<tr>
+			<th>商品名</th>
+			<th>単価（税込）</th>
+			<th>数量</th>
+			<th>小計</th>
+			<th></th>
+	    </tr>
+    </thead>
+    <tbody>
+    	
+       <% @cart_items.each do |cart_item| %>
+
+		 	<tr>
+		 		<td>
+		 			<%= cart_item.item.name %>
+		 		</td>
+		 		<td><%#= book.title %>
+		 			<%= cart_item.item.price %>
+		 		</td>
+		 		<td><%#= book.title %>
+		 			<%#= cart_item.select :amount, [["1", 1],["2", 2],["3", 3],["4", 4],["5", 5]] %>
+		 		</td>
+		 	    <td>
+		 	    	<%= cart_item.amount * cart_item.item.price %>
+		 	    </td>
+		 	    <td>
+		 	    	<%= link_to "Destroy", public_cart_item_path(cart_item.id), class: "btn-sm btn-danger destroy_book_36682",method: :delete %>
+		 	    </td>
+		 	    <td>
+		 	    	 <% @sum += cart_item.item.price * cart_item.amount %>
+		 	    </td>
+		 	</tr>
+		 	<%= link_to "情報入力へ進む", new_public_order_path %>
+	  <% end %>
+	  <%= @sum %>円
+    </tbody>
+ </table>
+ <%= link_to "買い物を続ける", public_items_path, class: "btn-sm btn-danger destroy_book_36682" %>
+
