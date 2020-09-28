@@ -14,7 +14,7 @@
 
 		 	<tr>
 		 		<td>
-		 			<%=link_to order.created_at, admin_orders_show_path %>
+		 			<%=link_to order.created_at, admin_order_path(order.id) %>
 		 		</td>
 		 		<td><%#= book.title %>
 		 			<%= order.name %>

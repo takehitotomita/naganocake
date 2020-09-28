@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     post  'orders/comfirm'
     get  'orders/complete'
     resources :customers
-    get 'top/top'
+    root to: 'top/top'
     get 'top/about'
     resources :orders
     resources :items
@@ -33,10 +33,10 @@ Rails.application.routes.draw do
     get 'customers/withdraw'
   end
   
-  root to: 'admin/top#top'
+  get 'admin/top#top'
   
   namespace :admin do
-    patch 'order_details/update'
+    resources :order_details, only: [:update]
     resources :genres
     resources :items
     resources :customers

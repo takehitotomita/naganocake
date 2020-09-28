@@ -11,7 +11,8 @@ class Admin::ItemsController < ApplicationController
   def create
     item = Item.new(item_params)
     item.save!
-    redirect_to admin_items_path
+    binding.pry
+    redirect_to admin_item_path(item.id)
     #is_active,true = "販売中"
     #is_active,false = "販売停止中"
   end
@@ -34,6 +35,6 @@ class Admin::ItemsController < ApplicationController
   
   private
   def item_params
-    params.require(:item).permit(:name, :introduction, :price, :genre_id, :price)
+    params.require(:item).permit(:name, :introduction, :price, :genre_id, :price, :is_active, :image)
   end
 end

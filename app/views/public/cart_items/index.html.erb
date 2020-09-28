@@ -21,8 +21,10 @@
 		 		<td><%#= book.title %>
 		 			<%= cart_item.item.price %>
 		 		</td>
-		 		<td><%#= book.title %>
-		 			<%#= cart_item.select :amount, [["1", 1],["2", 2],["3", 3],["4", 4],["5", 5]] %>
+		 		<td>
+                    <%#= form_with model: cart_item, url:public_cart_item_path,method: :patch,local: true do |f| %>
+		 				<%#= f.select :amount, [["1", 1],["2", 2],["3", 3],["4", 4],["5", 5]] %>
+		 			<%# end %>
 		 		</td>
 		 	    <td>
 		 	    	<%= cart_item.amount * cart_item.item.price %>
@@ -38,6 +40,6 @@
 	  <% end %>
 	  <%= @sum %>円
     </tbody>
- </table>
- <%= link_to "買い物を続ける", public_items_path, class: "btn-sm btn-danger destroy_book_36682" %>
+</table>
+<%= link_to "買い物を続ける", public_items_path, class: "btn-sm btn-danger destroy_book_36682" %>
 

@@ -34,6 +34,7 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = Order.new(order_params)
+    
     p '---------------------'
     p @order
     p order_params
@@ -42,12 +43,10 @@ class Public::OrdersController < ApplicationController
     @order.save
 
     current_customer.cart_items.each do |cart_item|
-      OrderDetail.new(order_id: @order.id, item_id: cart_item.item_id, 
-        price: cart_item.item.price, amount: cart_items.amount)
-    
-    current_customer.cart_items.destroy_all
+      OrderDetail.create(order_id: @order.id, item_id: cart_item.item_id, 
+        price: cart_item.item.price, amount: cart_item.amount)
     end
-    
+    current_customer.cart_items.destroy_all
     redirect_to public_orders_complete_path
 
 
