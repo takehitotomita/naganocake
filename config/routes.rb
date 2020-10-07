@@ -21,19 +21,18 @@ Rails.application.routes.draw do
   namespace :public do
     post  'orders/comfirm'
     get  'orders/complete'
+    get 'customers/unsubscribe'
     resources :customers
-    root to: 'top/top'
     get 'top/about'
     resources :orders
     resources :items
     resources :cart_items
-    delete 'cart_items/destroy'
+    delete 'cart_items/destroy_all'=> 'cart_items#destroy_all'
     resources :addresses
-    get 'customers/unsubscribe'
-    get 'customers/withdraw'
+    post 'customers/withdraw'
   end
   
-  get 'admin/top#top'
+  root to: 'public/top#top'
   
   namespace :admin do
     resources :order_details, only: [:update]
@@ -41,6 +40,7 @@ Rails.application.routes.draw do
     resources :items
     resources :customers
     resources :orders
+    get 'top/top'
   end
   
   

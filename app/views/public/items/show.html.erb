@@ -1,12 +1,18 @@
 <%= render 'public/items/list', genres: @genres %>
 
 <h3><%= @item.name %></h3>
-<%= form_with model: @cart_item, url:public_cart_items_path , method: :post,local: true do |f| %>
-    
-    <%= f.hidden_field :item_id, :value => @item.id %> 
-    <%= @item.name %> 
-	<%= @item.introduction %>
-	<%= @item.price %>
-	<%= f.select :amount, [["1", 1],["2", 2],["3", 3],["4", 4],["5", 5]] %>
-	<%= f.submit 'カートに入れる', class: "btn btn-primary col-xs-12" %>
- <% end %>
+<div class="pull-left">
+	<%= attachment_image_tag @item, :image, size:'300x300',format: 'jpeg' %>
+</div>
+<h4>
+	<div class="pull-right">
+		<%= form_with model: @cart_item, url:public_cart_items_path , method: :post,local: true do |f| %>
+		    <%= f.hidden_field :item_id, :value => @item.id %><br>
+		    <%= @item.name %><br>
+			<%= @item.introduction %><br>
+			<%= @item.price %><br>
+			<%= f.select :amount, [["1", 1],["2", 2],["3", 3],["4", 4],["5", 5]] %><br>
+			<%= f.submit 'カートに入れる',class: "btn btn-primary" %>
+		 <% end %>
+	</div>
+</h4>

@@ -4,8 +4,7 @@
 <%= @order.name %>
 <label>配送先</label>
 <%= @order.address %><br>
-<label><支払方法/label>
-<%#= @order.payment_method %>
+<label>支払方法</label>
 <% if @order.payment_method == 0 %>
 	クレジットカード
 <% else %>

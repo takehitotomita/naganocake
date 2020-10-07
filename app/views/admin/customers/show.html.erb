@@ -1,15 +1,31 @@
 <h1>
 	<%= @customer.last_name + @customer.first_name %>
-	<p>さんの会員詳細</p>
+	<text>さんの会員詳細</text>>
+
 </h1>
 
-<p>顧客ID</p><%#=  %>
-<p>氏名</p><%= @customer.last_name %><%= @customer.first_name %><br>
-<P>フリガナ</P><%= @customer.last_name_kana %><%= @customer.first_name_kana %><br>
-<p>郵便番号</p><%= @customer.address %><br>
-<p>住所</p><%= @customer.address %><br>
-<p>電話番号</p><%= @customer.telephone_number %><br>
-<p>メールアドレス</p><%= @customer.email %>
+	<div class= row>
+		<text>顧客ID</text><%= @customer.id %>
+	</div>
+	<div class= row>
+	<text>氏名</text><%= @customer.last_name %><%= @customer.first_name %><br>
+	</div>
+	<div class= row>
+	<text>フリガナ</text><%= @customer.last_name_kana %><%= @customer.first_name_kana %><br>
+	</div>
+	<div class= row>
+	<text>郵便番号</text><%= @customer.address %><br>
+	</div>
+	<div class= row>
+	<text>住所</text><%= @customer.address %><br>
+	</div>
+	<div class= row>
+	<text>電話番号</text><%= @customer.telephone_number %><br>
+	</div>
+	<div class= row>
+	<text>メールアドレス</text><%= @customer.email %>
+	</div>
 
-<%= link_to '編集する', edit_public_customer_path(@customer.id), class:  "col-xs-12 btn btn-default" %>
-<%#= link_to '注文履歴一覧を見る', admin_customers_edit_path(user.id), class:  "col-xs-12 btn btn-default" do %>
+<%= link_to '編集する', edit_admin_customer_path(@customer.id),class: "btn btn-primary" %>
+
+<%= link_to '注文履歴一覧を見る', admin_orders_path,class: "btn btn-primary" %>

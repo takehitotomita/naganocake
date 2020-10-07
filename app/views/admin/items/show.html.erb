@@ -1,13 +1,22 @@
 <h1>商品詳細</h1>
-<%= attachment_image_tag @item, :image, size:'100x100',format: 'jpeg' %>
-<p>商品名</p><%= @item.name %>
-<p>商品説明</p><%= @item.introduction %>
-<p>ジャンル</p><%= @item.genre.name %>
-<p>税込価格（税抜価格）</p><% @item.price * 1.1 %>(<%= @item.price %>)
-<p>販売ステータス</p>
-<% if @item.is_active == true %>
-	販売中
-<% else %>
-    販売停止中
-<% end %>
-<%= link_to "編集する", edit_admin_item_path(@item.id) %>
+<div class="pull-left">
+	<%= attachment_image_tag @item, :image, size:'300x300',format: 'jpeg' %>
+</div>
+<div class="pull-right">
+	<p>商品名</p><%= @item.name %>
+	<p></p>
+	<p>商品説明</p><%= @item.introduction %>
+	<p></p>
+	<p>ジャンル</p><%= @item.genre.name %>
+	<p></p>
+	<p>税込価格（税抜価格）</p><%= (@item.price * 1.1).round %>(<%= @item.price %>)
+	<p></p>
+	<p>販売ステータス</p>
+	<% if @item.is_active == true %>
+		販売中
+	<% else %>
+	    販売停止中
+	<% end %><br>
+	<%= link_to "編集する", edit_admin_item_path(@item.id) %>
+</div>
+

@@ -1,5 +1,5 @@
 <h1>登録情報編集</h1>
-<%= form_with model: @customer, url:public_customers_withdraw_path,local: true do |f| %>
+<%= form_with model: @customer, url:public_customer_path(current_customer.id),local: true do |f| %>
  <label class="field">
     名前<%= f.label :（姓） %>
     <%= f.text_field :last_name %>
@@ -33,4 +33,4 @@
   </div>
   <%= f.submit '編集内容を保存する' %>
  <% end %>
- <%= link_to "退会する", public_customers_unsubscribe_path %>
+ <%= link_to "退会する", public_customers_unsubscribe_path,　class: "btn btn-primary" %>

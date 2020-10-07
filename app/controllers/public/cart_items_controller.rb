@@ -6,12 +6,17 @@ class Public::CartItemsController < ApplicationController
   end
 
   def update
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(cart_item_params)
+    redirect_to public_cart_items_path
   end
 
   def destroy
   end
 
   def destroy_all
+    current_customer.cart_items.delete_all
+     redirect_to public_cart_items_path
   end
 
   def create
@@ -28,8 +33,9 @@ class Public::CartItemsController < ApplicationController
     redirect_to public_cart_items_path
   end
   def destroy
-     current_customer.cart_items.delete_all
-     redirect_to public_cart_items_path
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.destroy
+    redirect_to public_cart_items_path
     # @cart = current_cart
     # @cart.destroy
     # session[:cart_item_id] = nil

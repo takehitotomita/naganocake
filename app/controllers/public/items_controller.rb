@@ -3,7 +3,7 @@ class Public::ItemsController < ApplicationController
   end
 
   def index
-  	@items = Item.all
+  	@items = Item.fetch_valid
     @genres = Genre.fetch_valid
     if params[:genre_id].present?
        @items = @items.where(genre_id: params[:genre_id])

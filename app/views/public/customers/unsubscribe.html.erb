@@ -5,6 +5,6 @@
 
 
 <%= form_with model: @customer, url:public_customers_withdraw_path,local: true do |f| %>
-	<%= link_to "退会しない", public_customers_path %>
+	<%= link_to "退会しない", public_customer_path(@customer_id.id) %>
 	<%= f.submit '退会する' %>
 <% end %>

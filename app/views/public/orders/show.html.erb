@@ -1,6 +1,6 @@
 <h1>注文履歴詳細</h1>
 <label>注文情報</label>
- <table>
+ <table class="table">
 		<tr>
 			<th>注文日</th>
 			<td><%= @order.created_at %></td>
@@ -23,21 +23,23 @@
 			</td>
 		</tr>
 		<tr>
-			<th>支払方法</th>
-			<td><%= @order.status %>
-				<%# if payment_method == 0 %>
-					<%= @order.customer.address %>
-				<%# elsif payment_method == 1 %>
-					銀行振り込み
-				<%# else payment_method == 2 %>
-				    ああああ
-				<%# end %>
+			<th>ステータス</th>
+			<td><% if @order.status == 0 %>
+					入金待ち
+				<% elsif @order.status == 1 %>
+					入金確認
+				<% elsif @order.status == 2 %>
+					製作中
+				<% elsif @order.status == 3 %>
+					発送済み
+                <% elsif @order.status == 4 %>
+				<% end %>
 			</td>
 		</tr>
 </table>
 
 <label>注文内容</label>
-<table>
+<table class="table">
 	<thead>
 		<tr>
 			<th>商品名</th>
@@ -49,23 +51,23 @@
     </thead>
     <tbody>
     	
-       <% @cart_items.each do |cart_item| %> 
+       <% @order_details.each do |order_detail| %> 
 
 		 	<tr>
 		 		<td>
-		 			<%= cart_item.item.name %>
+		 			<%= order_detail.item.name %>
 		 		</td>
 		 		<td><%#= book.title %>
-		 			<%= cart_item.item.price %>
+		 			<%= order_detail.item.price %>
 		 		</td>
 		 		<td>
-		 			<%= cart_item.amount %>
+		 			<%= order_detail.amount %>
 		 		</td>
 		 	    <td>
-		 	    	<%= cart_item.amount * cart_item.item.price %>
+		 	    	<%= order_detail.amount * order_detail.item.price %>
 		 	    </td>
 		 	    <td>
-		 	    	 <% @sum += cart_item.item.price * cart_item.amount %>
+		 	    	 <% @sum += order_detail.item.price * order_detail.amount %>
 		 	    </td>
 		 	</tr>
 	  <% end %>
@@ -73,7 +75,7 @@
     </tbody>
  </table>
 
- <table>
+ <table class="table">
 		<tr>
 			<th>送料</th>
 			<td><%= 800 %></td>

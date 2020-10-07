@@ -53,13 +53,13 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
-    @orders = Order.all
+    @orders = Order.where(customer_id: current_customer.id)
   end
 
   def show
     @sum = 0
     @order = Order.find(params[:id])
-    @cart_items = CartItem.all
+    @order_details = @order.order_details
     #order_params = params[:order][:payment_method] + params[:order][:postal_code] +
 #@order = Order.new()
 #@order.postal_code = params[:order][:payment_method]

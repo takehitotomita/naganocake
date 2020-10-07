@@ -11,7 +11,6 @@ class Admin::ItemsController < ApplicationController
   def create
     item = Item.new(item_params)
     item.save!
-    binding.pry
     redirect_to admin_item_path(item.id)
     #is_active,true = "販売中"
     #is_active,false = "販売停止中"

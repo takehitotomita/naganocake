@@ -1,5 +1,5 @@
 <h1>注文確認</h1>
-<table>
+<table class="table table-bordered">
 	<thead>
 		<tr>
 			<th>商品名</th>
@@ -32,7 +32,7 @@
     </tbody>
  </table>
 
- <table>
+ <table class="table table-bordered">
 		<tr>
 			<th>送料</th>
 			<td><%= 800 %></td>
@@ -50,9 +50,15 @@
 
 <%= form_with model: @order, url: public_orders_path, method: :post,local: true do |f| %>
 	<お支払い方法>
-		<%= @order.payment_method %>
+		<%#= @order.payment_method %>
+		<% if @order.payment_method == 0 %>
+			クレジットカード
+		<% else %>
+			銀行振り込み
+		<% end %><br>
 		<%= f.hidden_field :payment_method, :value => @order.payment_method  %>
-		<%= @sum + 800 %>
+		<label>請求額</label>
+		<%= @sum + 800 %>円<br>
 		<%= f.hidden_field :total_payment, :value => @sum + 800 %>
         
 
@@ -65,5 +71,5 @@
 		<%= f.hidden_field :name, :value => @order.name %>
 
 
-	<%= f.submit '購入を確定する', class: "btn btn-primary col-xs-12" %>
+	<%= f.submit '購入を確定する',class: "btn btn-primary" %>
 <% end %>
